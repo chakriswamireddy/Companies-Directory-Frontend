@@ -28,7 +28,7 @@ export const CompanyProvider = ({ children }) => {
   const fetchCompanies = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get("http://localhost:5000/api/companies");
+      const { data } = await axios.get("https://api.mydummyapi.com/categories/business");
       setCompanies(data);
       setFilteredCompanies(data);
 
