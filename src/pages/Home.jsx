@@ -54,7 +54,7 @@ export default function CompanyList() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/companies/${deleteId}`);
+      await axios.delete(`https://api.mydummyapi.com/categories/business/${deleteId}`);
       await fetchCompanies();  
       closeModal();
     } catch (err) {
