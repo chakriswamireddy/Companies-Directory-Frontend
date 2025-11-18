@@ -15,7 +15,7 @@ export default function CompanyForm() {
       const fetchCompany = async () => {
         try {
           setLoading(true);
-          const { data } = await axios.get(`http://localhost:5000/api/companies/${id}`);
+          const { data } = await axios.get(`https://api.mydummyapi.com/categories/business/${id}`);
           setForm({
             name: data.name || "",
             industry: data.industry || "",
@@ -41,9 +41,9 @@ export default function CompanyForm() {
     try {
       setLoading(true);
       if (id) {
-        await axios.put(`http://localhost:5000/api/companies/${id}`, form);
+        await axios.put(`https://api.mydummyapi.com/categories/business/${id}`, form);
       } else {
-        await axios.post("http://localhost:5000/api/companies", form);
+        await axios.post("https://api.mydummyapi.com/categories/business", form);
       }
       navigate("/");
     } catch (err) {
