@@ -8,7 +8,7 @@ export default function useCompanies(filters) {
   const fetchCompanies = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get("http://localhost:5000/api/companies", {
+      const { data } = await axios.get("https://api.mydummyapi.com/categories/business", {
         params: filters,
       });
       setCompanies(data);
