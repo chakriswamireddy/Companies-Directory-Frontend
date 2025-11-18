@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 
 const CompanyContext = createContext();
 
@@ -31,6 +32,7 @@ export const CompanyProvider = ({ children }) => {
       const { data } = await axios.get("https://api.mydummyapi.com/categories/business");
       setCompanies(data);
       setFilteredCompanies(data);
+      toast.success("Companies fetched successfully");
 
       const uniqueIndustries = [...new Set(data.map((c) => c.industry))].filter(Boolean);
       const uniqueLocations = [...new Set(data.map((c) => c.location))].filter(Boolean);
@@ -46,7 +48,7 @@ export const CompanyProvider = ({ children }) => {
 
   useEffect(() => {
     let filtered = companies.filter((company) => {
-      const matchesName = company.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesName = company.company.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesIndustry = selectedIndustry ? company.industry === selectedIndustry : true;
       const matchesLocation = selectedLocation ? company.location === selectedLocation : true;
       return matchesName && matchesIndustry && matchesLocation;
@@ -54,8 +56,8 @@ export const CompanyProvider = ({ children }) => {
 
     filtered.sort((a, b) =>
       sortOrder === "asc"
-        ? a.name.localeCompare(b.name)
-        : b.name.localeCompare(a.name)
+        ? a.company.localeCompare(b.company)
+        : b.company.localeCompare(a.company)
     );
 
     setFilteredCompanies(filtered);

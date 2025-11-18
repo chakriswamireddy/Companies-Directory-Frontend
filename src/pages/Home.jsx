@@ -6,10 +6,10 @@ import { MdOutlineDomainAdd } from "react-icons/md";
 
 import axios from "axios";
 import { useCompanyContext } from "../hooks/CompanyContext";
+import { toast } from "sonner";
 
 
 export default function CompanyList() {
-
   
   const {
     companies,
@@ -49,6 +49,7 @@ export default function CompanyList() {
   const closeModal = () => {
     setDeleteId(null);
     setIsOpen(false);
+    toast.success("Company deleted successfully");
   };
 
 
@@ -190,7 +191,7 @@ export default function CompanyList() {
           <FaEdit className="text-sm" /> Edit
         </button>
         <button
-          onClick={() => openModal(company._id)}
+          onClick={() => openModal(company.id)}
           className="flex items-center gap-1 rounded-md border border-red-600 px-3 py-1 text-sm text-red-600 hover:text-white hover:bg-red-600"
         >
           <FaTrash className="text-sm" /> Delete
