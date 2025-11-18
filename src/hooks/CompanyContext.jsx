@@ -35,7 +35,7 @@ export const CompanyProvider = ({ children }) => {
       toast.success("Companies fetched successfully");
 
       const uniqueIndustries = [...new Set(data.map((c) => c.industry))].filter(Boolean);
-      const uniqueLocations = [...new Set(data.map((c) => c.location))].filter(Boolean);
+      const uniqueLocations = [...new Set(data.map((c) => c.address))].filter(Boolean);
 
       setIndustries(uniqueIndustries);
       setLocations(uniqueLocations);
@@ -50,7 +50,7 @@ export const CompanyProvider = ({ children }) => {
     let filtered = companies.filter((company) => {
       const matchesName = company.company.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesIndustry = selectedIndustry ? company.industry === selectedIndustry : true;
-      const matchesLocation = selectedLocation ? company.location === selectedLocation : true;
+      const matchesLocation = selectedLocation ? company.address === selectedLocation : true;
       return matchesName && matchesIndustry && matchesLocation;
     });
 

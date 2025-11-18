@@ -7,7 +7,7 @@ export default function CompanyForm() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({ name: "", industry: "", location: "" });
+  const [form, setForm] = useState({ company: "", industry: "", location: "" });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function CompanyForm() {
           setLoading(true);
           const { data } = await axios.get(`https://api.mydummyapi.com/categories/business/${id}`);
           setForm({
-            name: data.name || "",
+            company: data.company || "",
             industry: data.industry || "",
             location: data.location || "",
           });
@@ -53,7 +53,7 @@ export default function CompanyForm() {
     }
   };
 
-  if (loading && !form.name && id)
+  if (loading && !form.company && id)
     return (
       <div className="flex flex-col items-center justify-center h-screen">
         <FaSpinner className="animate-spin text-4xl text-blue-600" />
@@ -83,8 +83,8 @@ export default function CompanyForm() {
           <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-blue-200">
             <FaBuilding className="text-gray-400 mr-2" />
             <input
-              name="name"
-              value={form.name}
+              name="company"
+              value={form.company}
               onChange={handleChange}
               placeholder="e.g. TechNova Solutions"
               className="w-full outline-none text-gray-800"
